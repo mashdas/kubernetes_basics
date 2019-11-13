@@ -1,0 +1,38 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: helloworld-deployment
+spec:
+  replicas: 3
+  template:
+    metadata:
+      labels:
+        app: hello
+    spec:
+      containers:
+        
+        -name: k8s-demo
+         image: xlr99/hello-world
+         ports:
+          -name: nodejs-port
+           containerPort: 3000
+         
+         livenessProbe:
+           failureThreshold: 3
+           httpGet:
+             path: /
+             port: nodejs-port
+             scheme: HTTP
+           initialDelaySeconds: 15
+           timeoutSeconds: 30
+           successThreshold: 1
+           periodSeconds: 10 
+         
+         readinessProbe:
+           httpGet: 
+             path: /
+             port: nodejs-port
+             initialDelaySeconds: 15
+             timeoutSeconds: 30
+
+

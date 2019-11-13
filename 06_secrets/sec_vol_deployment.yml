@@ -1,0 +1,32 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: hello-deployment
+spec:
+  replicas: 3
+  template:
+    metadata:
+      name: hello-rc
+      labels: 
+        app: hello
+    spec:
+      containers:
+        -name: k8s-demo
+         image: xlr99/hello-world
+         ports:
+           -name : nodejs-port
+            containerPort: 3000
+          
+          volumeMounts:
+            -name: credVolume
+             mountPath: /etc/creds
+             readOnly: True 
+
+          volumes:
+           -name: credVolume
+            secret:
+             secretName : db-secrets   
+                
+
+
+

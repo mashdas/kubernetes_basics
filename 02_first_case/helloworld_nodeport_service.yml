@@ -1,0 +1,16 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: helloworld-service
+spec:
+  ports:
+    - port: 30101
+      nodePort: 31001
+      targetPort: nodejs-port
+      protocol: TCP
+  selector:
+    app: helloworld
+
+##port: through which other pods can access this service
+##nodeport: Present on the node which has the said pod 
+##targetPort: port exposed on the container    

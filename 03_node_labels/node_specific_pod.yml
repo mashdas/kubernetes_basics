@@ -1,0 +1,17 @@
+##Pre-requisite: You have labelled at least one node with the label>hardware:high-spec
+
+apiVersion: v1
+kind: Pod
+metadata:
+  name: nodehello
+  labels:
+    app: hello
+  spec:
+     containers:
+       -name: k8s-demo
+        image : xlr99/hello-world
+        ports:
+          -containerPort: 3000
+      nodeSelector:
+        hardware: high-spec     
+
