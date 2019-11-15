@@ -1,0 +1,23 @@
+##Pre-requisite: You have created a configmap named app-config
+
+apiVersion: v1
+kind: Pod
+metadata:
+  name: some_name
+  labels:
+    app: hello
+spec:
+  containers:
+    - name: k8s-demo
+      image: xlr99/hello-world
+      ports:
+        -name: nodejs-port
+         containerPort: 3000
+      env:
+        -name: DRIVER
+         valueFrom:
+          configMapKeyRef:
+            name: app-config
+            key: driver   ##refer to app.properties
+        -name: DAtabase
+                  
