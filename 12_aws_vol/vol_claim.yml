@@ -1,0 +1,13 @@
+kind: PersistentVolumeClaim
+apiVersion: v1
+metadata:
+  name: myclaim
+  annotations:
+    volume.beta.kubernets.io/storage-class: "standard"
+
+ spec:
+   accessModes:
+     - ReadWriteOnce 
+   resources:
+     requests:
+       storage: 8Gi     
