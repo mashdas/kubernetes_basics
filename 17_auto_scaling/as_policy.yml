@@ -1,0 +1,12 @@
+apiVersion: autoscaling/v1
+kind: HorizontalPodAutoScaler
+metadata:
+  name: hpa-example
+spec:
+  scaleTargetRef:
+    apiVersion: extensions/v1beta1
+    kind: Deployment
+    name: hpa-example
+  minReplicas: 1
+  maxReplicas: 10
+  targetCPUUtilizationProcess: 50     
